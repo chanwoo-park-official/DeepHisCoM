@@ -1,5 +1,5 @@
 # DeepHisCoM
-In this paper, we propose a novel pathway method DeepHisCoM (Deep-learning pathway analysis using Hierarchical structured CoMponent models) which uses deep learning analysis to find complex relationships between biological factors and pathways. 
+In this paper, we propose a novel pathway method **DeepHisCoM** (Deep-learning pathway analysis using Hierarchical structured CoMponent models) which uses deep learning analysis to find complex relationships between biological factors and pathways. 
 
 Change the code flexibily depending on the situation.
 
