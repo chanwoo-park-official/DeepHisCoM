@@ -3,4 +3,4 @@ In this paper, we propose a novel pathway method DeepHisCoM (Deep-learning pathw
 
 Change the code flexibily depending on the situation.
 
-For example, you can make cross-validation code via this code file. In addition, you can make some more extension of structure of DeepHisCoM, or you can use your own gpu. 
+For example, you can make cross-validation code via this code file. In addition, you can make some more extension of structure of DeepHisCoM, or you can use your own gpu. In our paper, we used some modified version of this code. This code is the "simplest" code to make DeepHisCoM structure. 
