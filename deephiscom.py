@@ -6,22 +6,12 @@ from collections import OrderedDict
 import torch.nn.functional as F
 from sklearn.model_selection import train_test_split
 from torch.autograd import Variable
-from torch.utils.data import Dataset
-from torch.utils.data import DataLoader, Subset
+from torch.utils.data import Dataset, DataLoader, Subset
 from sklearn.metrics import roc_auc_score
 import pandas as pd
-import multiprocessing
 import sys, os
 import random
-import time
-import torch
-from torch.multiprocessing import Pool, Process, set_start_method
 import argparse
-import math
-import torch
-import numpy as np
-import torch.nn as nn
-import torch.nn.functional as F
 
 
 
@@ -261,7 +251,6 @@ for permutation in range(0, permtime):
         TEST_SIZE = divide_rate
         train_indices, test_indices, _, _ = train_test_split(range(len(data_train)), data_train.y_data, stratify = data_train.y_data, 
                                                         test_size = TEST_SIZE)
-        print(train_indices)
 
         train_split = Subset(data_train, train_indices)
         test_split = Subset(data_train, test_indices)
@@ -354,7 +343,6 @@ for permutation in range(0, permtime):
                     else:
                         AUC_test = 0        
                     save_tmp.append(AUC_test)
-                    print(AUC_test)
 
         if stop_type in [1,2,3,4]:
             save_avg = sum(save_tmp)/len(save_tmp)
@@ -374,12 +362,3 @@ for permutation in range(0, permtime):
             
     param = param_save
     np.savetxt(experiment_name + "/tmp/param"+ str(permutation) + ".txt" ,param)
-
-
-
-#if __name__ == '__main__':
-#    set_start_method('spawn')
-#    pool = torch.multiprocessing.Pool(processes = multiprocess_num)
-#    pool.map(experiment, range(0,total_permutation_num))
-#    pool.close()
-#    pool.join()
