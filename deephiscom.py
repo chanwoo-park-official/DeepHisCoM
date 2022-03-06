@@ -247,7 +247,7 @@ for permutation in range(0, permtime):
     for i in range(0,grouplen):  
         nvar.append(sum(annot["group"]==groupunique[i]))
     
-    if 4<=stop_type:
+    if 3<=stop_type<=4:
         TEST_SIZE = divide_rate
         train_indices, test_indices, _, _ = train_test_split(range(len(data_train)), data_train.y_data, stratify = data_train.y_data, 
                                                         test_size = TEST_SIZE)
@@ -316,10 +316,10 @@ for permutation in range(0, permtime):
                 save_tmp.append(-loss_DeepHisCoM.item())
             if stop_type == 2:
                 if torch.sum(torch.isnan(output_DeepHisCoM))==0:
-                    AUC_test =  roc_auc_score(y_test.cpu().detach().numpy(), output_DeepHisCoM.cpu().detach().numpy())
+                    AUC_train =  roc_auc_score(y_train.cpu().detach().numpy(), output_DeepHisCoM.cpu().detach().numpy())
                 else:
-                    AUC_test = 0        
-                save_tmp.append(AUC_test)
+                    AUC_train = 0        
+                save_tmp.append(AUC_train)
             if stop_type == 5:
                 param_save = np.array(list(model_DeepHisCoM.fc_path_disease.parameters())[0].tolist()[0])
 
@@ -334,7 +334,7 @@ for permutation in range(0, permtime):
                 y_test = torch.squeeze(y_test)
 
                 if stop_type == 3:
-                    loss_DeepHisCoM_test = (criterion(output_DeepHisCoM, y_train)).type(dtype).item()
+                    loss_DeepHisCoM_test = (criterion(output_DeepHisCoM, y_test)).type(dtype).item()
                     save_tmp.append(-loss_DeepHisCoM_test)
 
                 if stop_type == 4:
